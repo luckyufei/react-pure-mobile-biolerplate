@@ -1,0 +1,510 @@
+//----------------------------
+//
+//  mixins.less v0.1.5
+//  http://mixinsless.com/
+//  Reuse snippets & Cross-browser private properties snippets.
+//----------------------------
+
+// Border radius with the same argument
+// -------------------------
+@mixin rounded($radius: 3px) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+// Border radius with different arguments
+// -------------------------
+@mixin border-radius($topleft: 0, $topright: 0, $bottomright: 0, $bottomleft: 0) {
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius: $bottomleft;
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $bottomright;
+  -moz-border-radius-bottomleft: $bottomleft;
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $bottomright;
+  border-bottom-left-radius: $bottomleft;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+// Background size
+// -------------------------
+@mixin background-size($size) {
+  -webkit-background-size: $size;
+  -moz-background-size: $size;
+  -o-background-size: $size;
+  background-size: $size;
+}
+
+// Opacity
+// -------------------------
+@mixin opacity($opacity) {
+  opacity: $opacity;
+  $opacityIE: $opacity * 100;
+  filter: "alpha(opacity=#{$opacityIE})";
+}
+
+// Appearance
+// -------------------------
+@mixin appearance($appearance:none) {
+  -webkit-appearance: $appearance;
+  appearance: $appearance;
+}
+
+// Gradient
+// -------------------------
+@mixin gradient($start: #000000, $stop: #FFFFFF) {
+  background: ($start + $stop)/2;
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0, $start), color-stop(1, $stop));
+  background: -moz-linear-gradient(center top, $start 0%, $stop 100%);
+}
+
+// Box shadow
+// -------------------------
+@mixin drop-shadow($horizontal: 0, $vertical: 1px, $blur: 2px, $alpha: 0.1) {
+  -webkit-box-shadow: $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+  -moz-box-shadow: $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+  box-shadow: $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+}
+
+// Box shadow inset
+// -------------------------
+@mixin inner-shadow($horizontal: 0, $vertical: 1px, $blur: 2px, $alpha: 0.4) {
+  -webkit-box-shadow: inset $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+  -moz-box-shadow: inset $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+  box-shadow: inset $horizontal $vertical $blur rgba(0, 0, 0, $alpha);
+}
+
+// Box inner border
+// -------------------------
+@mixin inner-border($width: 1px, $color: #000) {
+  -webkit-box-shadow: inset 0 0 0 $width $color;
+  -moz-box-shadow: inset 0 0 0 $width $color;
+  box-shadow: inset 0 0 0 $width $color;
+}
+
+// Box shadow default
+// -------------------------
+@mixin box-shadow($arguments) {
+  -webkit-box-shadow: $arguments;
+  -moz-box-shadow: $arguments;
+  box-shadow: $arguments;
+}
+
+// Background clipping
+// -------------------------
+@mixin background-clip($clip) {
+  -webkit-background-clip: $clip;
+  -moz-background-clip: $clip;
+  background-clip: $clip;
+}
+
+// CSS columns
+// -------------------------
+@mixin columns($colwidth: 250px, $colcount: 0, $colgap: 50px, $columnRuleColor: #EEEEEE, $columnRuleStyle: solid, $columnRuleWidth: 1px) {
+  -moz-column-width: $colwidth;
+  -moz-column-count: $colcount;
+  -moz-column-gap: $colgap;
+  -moz-column-rule-color: $columnRuleColor;
+  -moz-column-rule-style: $columnRuleStyle;
+  -moz-column-rule-width: $columnRuleWidth;
+  -webkit-column-width: $colwidth;
+  -webkit-column-count: $colcount;
+  -webkit-column-gap: $colgap;
+  -webkit-column-rule-color: $columnRuleColor;
+  -webkit-column-rule-style: $columnRuleStyle;
+  -webkit-column-rule-width: $columnRuleWidth;
+  column-width: $colwidth;
+  column-count: $colcount;
+  column-gap: $colgap;
+  column-rule-color: $columnRuleColor;
+  column-rule-style: $columnRuleStyle;
+  column-rule-width: $columnRuleWidth;
+}
+
+// Import font
+// -------------------------
+@mixin font-face($fontFamily, $fileName, $style, $weight) {
+  @font-face {
+    font-family: $fontFamily;
+    font-style: $style;
+    font-weight: $weight;
+    src: url('#{$fileName}.eot');
+    src: local('$fontFamily'), url('#{$fileName}.eot?#iefix') format('embedded-opentype'), url('#{$fileName}.woff') format('woff'), url('#{$fileName}.ttf') format('truetype'), url('#{$fileName}.svg#@{fontFamily}') format('svg'), url("#{$fileName}.otf") format('opentype');
+  }
+}
+
+// Clearfix
+// -------------------------
+@mixin clearfix() {
+  zoom: 1;
+  &:before {
+    content: '';
+    display: block;
+  }
+  &:after {
+    content: '';
+    display: table;
+    clear: both;
+  }
+}
+
+// CSS image replacement
+// -------------------------
+// Source: https://github.com/h5bp/html5-boilerplate/commit/aa0396eae757
+@mixin hide-text() {
+  font: 0/0 a;
+  color: transparent;
+  text-shadow: none;
+  background-color: transparent;
+  border: 0;
+}
+
+// Force line breaks
+// -------------------------
+@mixin word-break() {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+// No wrap
+// -------------------------
+@mixin no-wrap() {
+  word-break: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+}
+
+// Text overflow with(...)
+// -------------------------
+// Requires inline-block or block for proper styling
+@mixin text-overflow() {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}
+
+@mixin line-overflow($line) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+// Creates a wrapper for a series of columns
+// -------------------------
+@mixin lay-row() {
+  // Negative margin the row out to align the content of columns
+  margin-left: ($grid-gutter-width / -2);
+  margin-right: ($grid-gutter-width / -2);
+  // Then clear the floated columns
+  @include clearfix();
+}
+
+// Generate the columns
+// -------------------------
+@mixin lay-column($columns) {
+  @media (min-width: $grid-float-breakpoint) {
+    float: left;
+    // Calculate width based on number of columns available
+    width: percentage($columns / $grid-columns);
+  }
+  // Prevent columns from collapsing when empty
+  min-height: 1px;
+  // Set inner padding as gutters instead of margin
+  padding-left: ($grid-gutter-width / 2);
+  padding-right: ($grid-gutter-width / 2);
+}
+
+// Generate the column offsets
+// -------------------------
+@mixin lay-column-offset($columns) {
+  @media (min-width: $grid-float-breakpoint) {
+    margin-left: percentage(($columns / $grid-columns));
+  }
+}
+
+// Controls the selection model of an element.
+// -------------------------
+@mixin user-select($arguments:none) {
+  -webkit-user-select: $arguments;
+  -moz-user-select: $arguments;
+  -ms-user-select: $arguments;
+  user-select: $arguments;
+}
+
+// triangle
+// -------------------------
+@mixin triangle($direction: down, $size: 10px, $color: #000) {
+  display: inline-block;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  line-height: 0;
+  overflow: hidden;
+}
+
+@mixin triangle($direction: down, $size: 10px, $color: #000) {
+  @if ($direction = down) {
+    border-color: $color transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+    border-width: $size $size 0 $size;
+  } @else if ($direction = left) {
+    border-color: transparent $color transparent transparent;
+    border-style: dashed solid dashed dashed;
+    border-width: $size $size $size 0;
+  } @else if ($direction = up) {
+    border-color: transparent transparent $color transparent;
+    border-style: dashed dashed solid dashed;
+    border-width: 0 $size $size $size;
+  } @else if ($direction = right) {
+    border-color: transparent transparent transparent $color;
+    border-style: dashed dashed dashed solid;
+    border-width: $size 0 $size $size;
+  }
+}
+
+// arrow
+// -------------------------
+@mixin arrow($direction: down, $size: 10px, $color: #000, $borderColor: #c00) {
+  position: absolute;
+  width: 0;
+  height: 0;
+  font-size: 0;
+  &:after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 0;
+    font-size: 0;
+  }
+
+  @if ($direction = down) {
+    border-color: $borderColor transparent transparent transparent;
+    border-style: solid dashed dashed dashed;
+    border-width: $size $size 0 $size;
+    &:after {
+      left: -$size;
+      top: -($size+1);
+      border-color: $color transparent transparent transparent;
+      border-style: solid dashed dashed dashed;
+      border-width: $size $size 0 $size;
+    }
+  } @else if ($direction = left) {
+    border-color: transparent $borderColor transparent transparent;
+    border-style: dashed solid dashed dashed;
+    border-width: $size $size $size 0;
+    &:after {
+      left: 1px;
+      top: -$size;
+      border-color: transparent $color transparent transparent;
+      border-style: dashed solid dashed dashed;
+      border-width: $size $size $size 0;
+    }
+  } @else if ($direction = up) {
+    border-color: transparent transparent $borderColor transparent;
+    border-style: dashed dashed solid dashed;
+    border-width: 0 $size $size $size;
+    &:after {
+      left: -$size;
+      top: 1px;
+      border-color: transparent transparent $color transparent;
+      border-style: dashed dashed solid dashed;
+      border-width: 0 $size $size $size;
+    }
+  } @else if ($direction = right) {
+    border-color: transparent transparent transparent $borderColor;
+    border-style: dashed dashed dashed solid;
+    border-width: $size 0 $size $size;
+    &:after {
+      left: -($size+1);
+      top: -$size;
+      border-color: transparent transparent transparent $color;
+      border-style: dashed dashed dashed solid;
+      border-width: $size 0 $size $size;
+    }
+  }
+}
+
+@mixin text-shadow($string: 0 1px 3px rgba(0, 0, 0, 0.25)) {
+  text-shadow: $string;
+}
+
+@mixin box-shadow($string) {
+  -webkit-box-shadow: $string;
+  //-moz-box-shadow:    $string;
+  box-shadow: $string;
+}
+
+@mixin drop-shadow($x: 0, $y: 1px, $blur: 2px, $spread: 0, $alpha: 0.25) {
+  -webkit-box-shadow: $x $y $blur $spread rgba(0, 0, 0, $alpha);
+  //-moz-box-shadow:	$x $y $blur $spread rgba(0, 0, 0, $alpha);
+  box-shadow: $x $y $blur $spread rgba(0, 0, 0, $alpha);
+}
+
+@mixin inner-shadow($x: 0, $y: 1px, $blur: 2px, $spread: 0, $alpha: 0.25) {
+  -webkit-box-shadow: inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+  //-moz-box-shadow:    inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+  box-shadow: inset $x $y $blur $spread rgba(0, 0, 0, $alpha);
+}
+
+@mixin box-sizing($type: border-box) {
+  -webkit-box-sizing: $type;
+  //-moz-box-sizing:    $type;
+  box-sizing: $type;
+}
+
+@mixin border-radius($arguments:5px) {
+  -webkit-border-radius: $arguments;
+  //-moz-border-radius: $arguments;
+  border-radius: $arguments;
+
+  //-moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+}
+
+@mixin gradient($startColor: #eee, $endColor: white) {
+  background-color: $startColor;
+  background: -webkit-gradient(linear, left top, left bottom, from($startColor), to($endColor));
+  background: -webkit-linear-gradient(top, $startColor, $endColor);
+  //background: -moz-linear-gradient(top, $startColor, $endColor);
+  //background: -ms-linear-gradient(top, $startColor, $endColor);
+  //background: -o-linear-gradient(top, $startColor, $endColor);
+}
+
+@mixin horizontal-gradient($startColor: #eee, $endColor: white) {
+  background-color: $startColor;
+  background-image: -webkit-gradient(linear, left top, right top, from($startColor), to($endColor));
+  background-image: -webkit-linear-gradient(left, $startColor, $endColor);
+  //background-image: -moz-linear-gradient(left, $startColor, $endColor);
+  //background-image: -ms-linear-gradient(left, $startColor, $endColor);
+  //background-image: -o-linear-gradient(left, $startColor, $endColor);
+}
+
+@mixin linear-gradient( $dir: top, $start-color: #eee, $end-color: #aaa ) {
+  background: -webkit-linear-gradient($dir, $start-color 0%, $end-color 100%);
+  //background: -moz-linear-gradient($dir, $start-color 0%, $end-color 100%);
+  //background: -ms-linear-gradient($dir, $start-color 0%, $end-color 100%);
+  //background: -o-linear-gradient($dir, $start-color 0%, $end-color 100%);
+  background: linear-gradient($dir, $start-color 0%, $end-color 100%);
+  //.linear-gradient-ie( $dir, $start-color, $end-color);
+}
+
+@mixin inline-block() {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+}
+
+@mixin text-align-justify() {
+  text-align: justify;
+  text-justify: distribute-all-lines; /*ie6-8*/
+  text-align-last: justify; /* ie9*/
+  //-moz-text-align-last:justify;/*ff*/
+  -webkit-text-align-last: justify; /*chrome 20+*/
+  @media screen and (-webkit-min-device-pixel-ratio: 0) {
+    /* chrome*/
+    &:after {
+      content: ".";
+      display: inline-block;
+      width: 100%;
+      overflow: hidden;
+      height: 0;
+    }
+  }
+}
+
+@mixin top-line() {
+  &::before {
+    display: block;
+    position: absolute;
+    content: "";
+    background-color: #e6e6e6;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+}
+
+@mixin left-img() {
+  display: block;
+  position: absolute;
+  content: "";
+  left: 0;
+  top: 0;
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 100% auto;
+}
+
+@mixin right-img() {
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    right: 0;
+    top: 0;
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: 100% auto;
+  }
+}
+
+@mixin bottom-line($bgColor: #eaeaeb) {
+  &::after {
+    display: block;
+    position: absolute;
+    content: "";
+    background-color: $bgColor;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    -webkit-transform: scaleY(.5);
+    transform: scaleY(.5);
+  }
+}
+
+@mixin around-line() {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid #eaeaeb;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 200%;
+  height: 200%;
+  -webkit-transform: scale(0.5);
+  transform: scale(0.5);
+  -webkit-transform-origin: left top;
+  transform-origin: left top;
+  z-index: -1;
+}
+
+@mixin bg-image($url, $width, $height) {
+  width: $width;
+  height: $height;
+  background: url($url) no-repeat center;
+  background-size: cover;
+}
+
+%boxshadow {
+  box-shadow:0px 2px 4px 0px rgba(0,0,0,0.15);
+}

@@ -1,0 +1,24 @@
+$base-font-size: 13px;
+$base-warning-color: #f0943c;
+$global-color-gray: #888; 
+$global-color-red: #f44336;
+$global-secondary-color: #888888;
+$global-font-color: #282828; 
+$global-font-color-warning: #f0943c;
+
+// btn css
+
+$btn-base-border: 1px solid rgba(0,0,0,0.1);
+$btn-base-border-radius: 2px; 
+
+$btn-default-color: #4c4c4c; 
+$btn-default-bgcolor: #fff;
+$btn-default-border: 1px solid #e0e0e0;  
+
+$btn-primary-color: #fff;
+$btn-primary-bgcolor: #42a5f5; 
+$btn-primary-border: $btn-base-border;
+
+$btn-danger-color: #fff;
+$btn-danger-bgcolor: #f86054;
+$btn-danger-border: $btn-base-border; 

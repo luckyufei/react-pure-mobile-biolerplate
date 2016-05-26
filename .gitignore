@@ -1,0 +1,14 @@
+.idea/
+node_modules/
+*.iml
+webpack-stats.json
+npm-debug.log
+npm-debug.log.*
+dev/sessions
+dev/uploads
+config/development/*
+config/dev/*
+config/dev2
+.DS_Store
+stats.json
+webpack-assets.json

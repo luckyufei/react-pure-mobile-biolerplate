@@ -1,0 +1,261 @@
+// FlexLess
+// ========
+//
+// Less mixins for using flexbox without crying.
+//
+// Last update: 02.08.2013
+// https://github.com/codio/Flex.less
+
+// Enabeling Flexbox
+// -----------------
+//
+// Property Name: display
+// Values: flex | inline-flex
+@mixin display($value: flex) {
+  //display: -moz-box;              // Mozilla Old
+  @if ($value = flex) {
+    display: "-webkit-#{$value}"; // Webkit Standard
+    display: $value; // Standard
+    display: -webkit-box; // Webkit Old
+    display: -ms-flexbox; //ie10
+  } @else if ($value = inline-flex) {
+    display: -webkit-inline-box; // Webkit Old
+  }
+}
+
+// Axis Alignment
+// --------------
+//
+// Property Name: justify-content
+// Values: flex-start | flex-end | center | space-between | space-around
+@mixin justify-content($value: flex-start) {
+  -webkit-justify-content: $value; // Webkit Standard
+  -moz-justify-content: $value; // Mozilla Standard
+  -ms-justify-content: $value; // IE 11 Standard
+  justify-content: $value; // Standard
+  @if ($value == flex-start) {
+    -webkit-box-pack: start; // Webkit Old
+    -ms-box-pack: start;
+    -moz-box-pack: start;
+  } @else if ($value == center) {
+    -webkit-box-pack: center; // Webkit Old
+    -moz-box-pack: center; // Mozilla Old
+    -ms-flex-pack: center; // IE 10 Mid
+  } @else if ($value == flex-end) {
+    -webkit-box-pack: end; // Webkit Old
+    -moz-box-pack: end; // Mozilla Old
+    -ms-flex-pack: end; // IE 10 Mid
+  } @else if ($value == space-between) {
+    -webkit-box-pack: justify; // Webkit Old
+    -moz-box-pack: justify; // Mozilla Old
+    -ms-flex-pack: justify; // IE 10 Mid
+  } @else if ($value == space-around) {
+    -ms-flex-pack: distribute; // IE 10 Mid
+  }
+}
+
+// Cross Axis Alignment
+// --------------------
+//
+// Property Name: align-items
+// Values: flex-start | flex-end | center | baseline | stretch
+@mixin align-items($value: stretch) {
+  -webkit-align-items: $value; // Webkit Standard
+  -moz-align-items: $value; // Mozilla Standard
+  -ms-align-items: $value; // IE 11 Standard
+  align-items: $value; // Standard
+
+  @if ($value == flex-start) {
+    -webkit-box-align: start; // Webkit Old
+    -moz-box-align: start; // Mozilla Old
+    -ms-flex-align: start; // IE 10 Mid
+  } @else if ($value == flex-end) {
+    -webkit-box-align: end; // Webkit Old
+    -moz-box-align: end; // Mozilla Old
+    -ms-flex-align: end; // IE 10 Mid
+  } @else {
+    -webkit-box-align: $value; // Webkit Old
+    -moz-box-align: $value; // Mozilla Old
+    -ms-flex-align: $value; // IE 10 Mid
+  }
+
+}
+
+// Individual Cross-Axis Alignment
+// -------------------------------
+//
+// Property Name: align-self
+// Values: auto | flex-start | flex-end | center | baseline | stretch
+@mixin align-self($value: auto) {
+  -webkit-align-self: $value; // Webkit Standard
+  -moz-align-self: $value; // Mozilla Standard
+  -ms-align-self: $value; // IE 11 Standard
+  align-self: $value; // Standard
+
+  @if ($value == flex-start) {
+    -ms-flex-item-align: start; // IE 10 Mid
+  } @else if ($value == flex-end) {
+    -ms-flex-item-align: end; // IE 10 Mid
+  } @else {
+    -ms-flex-item--align: $value; // IE 10 Mid
+  }
+}
+
+// Flex Line Alignment
+// -------------------
+//
+// Property Name: align-content
+// Values: flex-start | flex-end | center | space-between | space-around | stretch
+@mixin align-content($value: auto) {
+  -webkit-align-content: $value; // Webkit Standard
+  -moz-align-content: $value; // Mozilla Standard
+  -ms-align-content: $value; // IE 11 Standard
+  align-content: $value; // Standard
+
+  @if ($value == flex-start) {
+    -ms-flex-line-pack: start; // IE 10 Mid
+  } @else if ($value == flex-end) {
+    -ms-flex-line-pack: end; // IE 10 Mid
+  } @else if ($value == space-between) {
+    -ms-flex-line-pack: justify; // IE 10 Mid
+  } @else if ($value == space-around) {
+    -ms-flex-line-pack: distribute; // IE 10 Mid
+  } @else {
+    -ms-flex-line-pack: $value; // IE 10 Mid
+  }
+}
+
+// Display Order
+// -------------
+//
+// Property Name: order
+// Values: <integer>
+@mixin order($value: 0) {
+  -webkit-box-ordinal-group: $value + 1; // Webkit Old
+  -moz-box-ordinal-group: $value + 1; // Mozilla Old
+  -ms-flex-order: $value; // IE 10 Mid
+  -webkit-order: $value; // Webkit Standard
+  -moz-order: $value; // Mozilla Standard
+  -ms-order: $value; // IE 11 Standard
+  order: $value; // Standard
+}
+
+// Flexibillity
+// ------------
+//
+// Property Name: flex
+// Values: none | [ <'flex-grow'> <'flex-shrink'>? || <'flex-basis'> ]
+@mixin flex($grow: 1, $shrink: 1, $basis: 0%) {
+  $arguments: $grow $shrink $basis;
+  -webkit-box-flex: $grow; // Webkit Old
+  -moz-box-flex: $grow; // Mozilla Old
+  -webkit-flex: $arguments; // Webkit Standard
+  -moz-flex: $arguments; // Mozilla Standard
+  -ms-flex: $arguments; // IE 10 Mid, IE 11 Standard
+  flex: $arguments; // Standard
+}
+
+// Longhand - Flex Grow
+// --------------------
+//
+// Property Name: flex-grow
+// Value: <number>
+@mixin flex-grow($value: 0) {
+  -webkit-flex-grow: $value; // Webkit Standard
+  -moz-flex-grow: $value; // Mozilla Standard
+  -ms-flex-grow: $value; // IE 10 Mid, IE 11 Standard
+  flex-grow: $value; // Standard
+}
+
+// Longhand - Flex Shrink
+// --------------------
+//
+// Property Name: flex-shrink
+// Value: <number>
+@mixin flex-shrink($value: 1) {
+  -webkit-flex-shrink: $value; // Webkit Standard
+  -moz-flex-shrink: $value; // Mozilla Standard
+  -ms-flex-shrink: $value; // IE 10 Mid, IE 11 Standard
+  flex-shrink: $value; // Standard
+}
+
+// Longhand - Flex Basis
+// --------------------
+//
+// Property Name: flex-basis
+// Value: <number>
+@mixin flex-basis($value: auto) {
+  -webkit-flex-basis: $value; // Webkit Standard
+  -moz-flex-basis: $value; // Mozilla Standard
+  -ms-flex-basis: $value; // IE 10 Mid, IE 11 Standard
+  flex-basis: $value; // Standard
+}
+
+// Direction
+// ---------
+//
+// Property Name: flex-direction
+// Values: row | row-reverse | column | column-reverse
+@mixin flex-direction($value: row) {
+  -webkit-flex-direction: $value; // Webkit Standard
+  -moz-flex-direction: $value; // Mozilla Standard
+  -ms-flex-direction: $value; // IE 10 Mid, IE 11 Standard
+  flex-direction: $value; // Standard
+
+  @if ($value == row) {
+    @include box-orient(horizontal);
+    @include box-direction(normal);
+  } @else if ($value == row-reverse) {
+    @include box-orient(horizontal);
+    @include box-direction(reverse);
+  } @else if ($value == column) {
+    @include box-orient(vertical);
+    @include box-direction(normal);
+  } @else if ($value == column-reverse) {
+    @include box-orient(vertical);
+    @include box-direction(reverse);
+  }
+}
+
+// Old Properties
+// --------------
+@mixin box-direction($value) {
+  -webkit-box-direction: $value; // Webkit Old
+  -moz-box-direction: $value; // Mozilla Old
+}
+
+@mixin box-orient($value) {
+  -webkit-box-orient: $value; // Webkit Old
+  -moz-box-orient: $value; // Mozilla Old
+}
+
+// Wrapping
+// --------
+//
+// Property Name: flex-wrap
+// Values: nowrap | wrap | wrap-reverse
+@mixin flex-wrap($value: nowrap) {
+  -webkit-flex-wrap: $value; // Webkit Standard
+  -moz-flex-wrap: $value; // Mozilla Standard
+  -ms-flex-wrap: $value; // IE 10 Mid, IE 11 Standard
+  flex-wrap: $value; // Standard
+  @if ($value == nowrap) {
+    -webkit-box-lines: single; // Webkit Old
+    -moz-box-lines: single; // Mozilla Old
+  } @else if ($value == wrap) {
+    -webkit-box-lines: multiple; // Webkit Old
+    -moz-box-lines: mulitple; // Mozilla Old
+  }
+}
+
+// Shorthand - Flex Flow
+// ---------------------
+//
+// Property Name: flex-flow
+// Values: <‘flex-direction’> || <‘flex-wrap’>
+@mixin flex-flow($direction: row, $wrap: nowrap) {
+  -webkit-flex-flow: $arguments; // Webkit Standard
+  -moz-flex-flow: $arguments; // Mozilla Standard
+  -ms-flex-flow: $arguments; // IE 10 Mid, IE 11 Standard
+  flex-flow: $arguments;
+}

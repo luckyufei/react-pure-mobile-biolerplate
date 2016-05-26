@@ -1,0 +1,87 @@
+@font-face {
+  font-family: 'icomoon';
+  src:    url('../fonts/icomoon.eot?npx0fe');
+  src:    url('../fonts/icomoon.eot?npx0fe#iefix') format('embedded-opentype'),
+  url('../fonts/icomoon.ttf?npx0fe') format('truetype'),
+  url('../fonts/icomoon.woff?npx0fe') format('woff'),
+  url('../fonts/icomoon.svg?npx0fe#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  font-size: 16px;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+:global(.icon-anr):before {
+  content: "\e902";
+}
+:global(.icon-decrease):before {
+  content: "\e900";
+}
+:global(.icon-android):before {
+  content: "\e901";
+}
+:global(.icon-crash):before {
+  content: "\e903";
+}
+:global(.icon-envelope):before {
+  content: "\e904";
+}
+:global(.icon-error):before {
+  content: "\e905";
+}
+:global(.icon-export):before {
+  content: "\e906";
+}
+:global(.icon-hourglass):before {
+  content: "\e907";
+}
+:global(.icon-ios):before {
+  content: "\e908";
+}
+:global(.icon-keyboard):before {
+  content: "\e909";
+}
+:global(.icon-menu):before {
+  content: "\e90b";
+}
+:global(.icon-msg):before {
+  content: "\e90c";
+}
+:global(.icon-overview):before {
+  content: "\e90d";
+}
+:global(.icon-rectangle):before {
+  content: "\e90e";
+}
+:global(.icon-retract):before {
+  content: "\e90f";
+}
+:global(.icon-right):before {
+  content: "\e910";
+}
+:global(.icon-search):before {
+  content: "\e911";
+}
+:global(.icon-search2):before {
+  content: "\e912";
+}
+:global(.icon-setting):before {
+  content: "\e913";
+}
+:global(.icon-stack):before {
+  content: "\e914";
+}
+
